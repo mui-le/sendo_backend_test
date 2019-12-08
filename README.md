@@ -20,13 +20,13 @@ SNSD       | 100000       | 2018-09-01 17:00:00  | 2018-09-15 17:00:00
 ```
 **Requirements**
 
-- 1. Write a document provide the design that makes it easy to scale, and has good performance
-- 2. Implement the functionality according to the above design, the recommended Go / or Python language here because it is necessary and suitable for your position
-- 3. The code is well design, has Unit Test, has Integration Test / Benchmark Test to prove the program's correctness. You are recommended to use it with Docker to easily setup and start the program quickly.
+- Write a document provide the design that makes it easy to scale, and has good performance
+- Implement the functionality according to the above design, the recommended Go / or Python language here because it is necessary and suitable for your position
+- The code is well design, has Unit Test, has Integration Test / Benchmark Test to prove the program's correctness. You are recommended to use it with Docker to easily setup and start the program quickly.
 
 Test data
 ---------
-
+```
 Test overlap times - true
 code: SNSD, value: 5000, start: 2018-09-01 17:00:00, end: 2018-09-15 17:00:00
 code: SNSD, value: 100000, start: 2019-09-01 17:00:00, end: 2019-09-15 17:00:00
@@ -52,6 +52,7 @@ Test API can get a Voucher (GET request) ... ok
 Test API can create a Voucher (POST request) - False
 code: 'SNSD', value: 10000, start: '2018-09-01 17:00:00', end: '2019-09-15 17:00:00'
 Test API can get a Voucher (GET request) ... ok
+```
 
 ## Code
 - The code was developed using docker container with the following stack
