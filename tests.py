@@ -43,7 +43,8 @@ class VoucherModelCase(unittest.TestCase):
         end3   = datetime.strptime('2019-09-15 17:00:00', "%Y-%m-%d %H:%M:%S")
         v3     = Voucher(code='SNSD', value=10000, start=start3, end=end3)
         self.assertEqual(v3.is_overlap(), True)
-        
+
+        """Test unit overlap Fails"""
         v3.start = datetime.strptime('2020-09-14 17:00:00', "%Y-%m-%d %H:%M:%S")
         v3.end = datetime.strptime('2021-09-14 17:00:00', "%Y-%m-%d %H:%M:%S")
         self.assertEqual(v3.is_overlap(), False)
