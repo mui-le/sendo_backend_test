@@ -63,7 +63,7 @@ Test API can get a Voucher (GET request) ... ok
 It should work in other versions but it was not tested.
 
 ### Implementation design
-- Implement a crud system that these requirements. Although I Can do it better than now, because I quite not good in the week. Thanks for your consideration.
+- Implement a crud system that these requirements. Although, I can do it better than now, But I quite tired in the week. Thanks for your consideration.
 
 ### Considerations
 - FlaskRESTful
@@ -98,12 +98,16 @@ Execute the test
 $ docker exec -it sendo /\home/\sendo/\tests.sh
 ```
 
-**Demo version**
-Listing
+###Demo version 1.0
+
+**Listing**
+
 ```sh
 curl -i http://0.0.0.0:8000/api/v1.0/vouchers
 ```
--->response in the case already have data
+**-->Response**
+
+in the case already have data
 ```
 HTTP/1.1 200 OK
 Server: gunicorn/20.0.4
@@ -115,11 +119,13 @@ Content-Length: 130
 {"vouchers":[{"code":"SNSD","end":"Sun, 15 Sep 2019 17:00:00 GMT","id":1,"start":"Sat, 01 Sep 2018 17:00:00 GMT","value":10000}]}
 ```
 
-Creating
+**Creating**
+
 ```sh
 curl -X POST -d '{"code": "SNSD", "value": 10000, "start": "2018-09-01 17:00:00", "end": "2019-09-15 17:00:00"}' -i -H "Content-Type: application/json" http://0.0.0.0:8000/api/v1.0/vouchers
 ```
--> Response:
+**-->Response**
+
 ```
 HTTP/1.1 200 OK
 Server: gunicorn/20.0.4
@@ -131,12 +137,14 @@ Content-Length: 130
 {"vouchers":[{"code":"SNSD","end":"Sun, 15 Sep 2019 17:00:00 GMT","id":1,"start":"Sat, 01 Sep 2018 17:00:00 GMT","value":10000}]}
 ```
 
-Creating overlap -> fail
+**Creating overlap -> fail**
+
 ```sh
 curl -X POST -d '{"code": "SNSD", "value": 10000, "start": "2018-09-01 17:00:00", "end": "2019-09-15 17:00:00"}' -i -H "Content-Type: application/json" http://0.0.0.0:8000/api/v1.0/vouchers
 ```
 
--> Response:
+**-->Response**
+
 ```
 HTTP/1.1 400 BAD REQUEST
 Server: gunicorn/20.0.4
@@ -148,12 +156,14 @@ Content-Length: 24
 {"error":"Bad request"}
 ```
 
-Updating
+**Updating**
+
 ```sh
 curl -X PUT -d '{"code": "SNSD", "value": 10000, "start": "2020-09-01 17:00:00", "end": "2020-09-15 17:00:00"}' -i -H "Content-Type: application/json" http://0.0.0.0:8000/api/v1.0/vouchers/1
 ```
 
--> response:
+**-->Response**
+
 ```
 HTTP/1.1 201 CREATED
 Server: gunicorn/20.0.4
