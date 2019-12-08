@@ -1,6 +1,8 @@
 #!/bin/sh
 source venv/bin/activate
 while true; do
+    flask db init
+    flask db migrate -m "vouchers table"
     flask db upgrade
     if [[ "$?" == "0" ]]; then
         break
