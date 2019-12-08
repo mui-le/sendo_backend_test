@@ -2,7 +2,8 @@
 
 -------------------------------------------
 You are recommended to build a Voucher system, to manage the code, so that no two codes have the same time, or overlap time on each other.
-**E.g Valid**:
+
+**Valid**:
 
 ```
 Code       | Value        | Start                | End
@@ -10,7 +11,8 @@ Code       | Value        | Start                | End
 SNSD       | 50000        | 2018-09-01 17:00:00  | 2018-09-15 17:00:00
 SNSD       | 100000       | 2019-09-01 17:00:00  | 2019-09-15 17:00:00
 ```
-**E.g Invalid**
+
+**Invalid**
 
 ```
 Code       | Value        | Start                | End
