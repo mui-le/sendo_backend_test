@@ -30,18 +30,54 @@ class VoucherModelCase(unittest.TestCase):
     
     def test_overlap(self):
         """Test unit overlap"""
+        start1 = datetime.strptime('2018-09-01 17:00:00', "%Y-%m-%d %H:%M:%S")
+        end1   = datetime.strptime('2019-09-15 17:00:00', '%Y-%m-%d %H:%M:%S')
+        start2 = datetime.strptime('2019-09-01 17:00:00', '%Y-%m-%d %H:%M:%S')
+        end2   = datetime.strptime('2019-09-15 17:00:00', '%Y-%m-%d %H:%M:%S')
+        v1 = Voucher(code='SNSD', value=5000, start=start1, end=end1)
+        v2 = Voucher(code='SNSD', value=10000, start=start2, end=end2)
+        db.session.add(v1)
+        db.session.add(v2)
+        db.session.commit()
+        start3 = datetime.strptime('2019-09-14 17:00:00', "%Y-%m-%d %H:%M:%S")
+        end3   = datetime.strptime('2019-09-15 17:00:00', "%Y-%m-%d %H:%M:%S")
+        v3     = Voucher(code='SNSD', value=10000, start=start3, end=end3)
+        self.assertEqual(v3.is_overlap(), True)
     
     def test_overlap_with_others(self):
         """Test unit overlap with others for updating"""
+        start1 = datetime.strptime('2018-09-01 17:00:00', "%Y-%m-%d %H:%M:%S")
+        end1   = datetime.strptime('2019-09-15 17:00:00', '%Y-%m-%d %H:%M:%S')
+        start2 = datetime.strptime('2019-09-01 17:00:00', '%Y-%m-%d %H:%M:%S')
+        end2   = datetime.strptime('2019-09-15 17:00:00', '%Y-%m-%d %H:%M:%S')
+        v1 = Voucher(code='SNSD', value=5000, start=start1, end=end1)
+        v2 = Voucher(code='SNSD', value=10000, start=start2, end=end2)
+        db.session.add(v1)
+        db.session.add(v2)
+        db.session.commit()
+        v2.start = datetime.strptime('2018-09-01 17:00:00', "%Y-%m-%d %H:%M:%S")
+        v2.end   = datetime.strptime('2019-09-15 17:00:00', '%Y-%m-%d %H:%M:%S')
+        self.assertEqual(v2.is_overlap_with_other(), True)
 
     def test_get_vouchers(self):
         """Test API can get a Voucher (GET request)"""
+        res = self.client().get('/api/v1.0/vouchers')
+        self.assertEqual(res.status_code, 200)
+        self.assertIn('vouchers', str(res.data))
 
     def test_voucher_creation(self):
         """Test API can create a Voucher (POST request)"""
+        v1 = dict(code='SNSD', value=10000, start='2018-09-01 17:00:00', end='2019-09-15 17:00:00')
+        res = self.client().post('/api/v1.0/vouchers', data=json.dumps(v1, indent=4), content_type='application/json')
+        self.assertEqual(res.status_code, 201)
+        self.assertIn('SNSD', str(res.data))
 
     def test_voucher_update(self):
         """Test API can update a Voucher (PUT request)"""
+        start1 = datetime.strptime('2018-09-01 17:00:00', "%Y-%m-%d %H:%M:%S")
+        end1   = datetime.strptime('2019-09-15 17:00:00', '%Y-%m-%d %H:%M:%S')
+        v1 = Voucher(code='SNSD', value=5000, start=start1, end=end1)
+        v1.save()
 
 if __name__ == '__main__':
     unittest.main(verbosity = 2)
