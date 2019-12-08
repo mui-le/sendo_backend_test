@@ -15,7 +15,7 @@ RUN venv/bin/pip install gunicorn
 
 COPY app app
 COPY migrations migrations
-COPY sendo.py config.py boot.sh tests.sh tests.py pytest.ini ./
+COPY sendo.py config.py boot.sh tests.sh tests.py ./
 RUN chmod +x boot.sh
 RUN chmod +x tests.sh
 
