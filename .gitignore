@@ -13,3 +13,4 @@ build/
 venv
 .vscode/
 *.db
+*.example*
