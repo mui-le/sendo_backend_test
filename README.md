@@ -60,13 +60,14 @@ Test API can get a Voucher (GET request) ... ok
 
 The code was developed using docker container with the following stack
 - Python 3.6
-- Flask micro web framework
+- Python Flask
 - Python unittest
+- SQLite for storage data
 
 It should work in other versions but it was not tested.
 
 ### Implementation design
-- Implement a crud system that these requirements. Although, I can do it better than now, But I quite tired in the week. Thanks for your consideration.
+- Implement a crud system that these requirements. Although, I can do it better than now, But I quite tired in the week, I only can take 4 hours Sunday to do it. Thanks for your understanding.
 
 ### Considerations
 - FlaskRESTful
