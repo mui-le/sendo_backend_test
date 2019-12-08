@@ -57,7 +57,8 @@ Test API can get a Voucher (GET request) ... ok
 ```
 
 ## Code
-- The code was developed using docker container with the following stack
+
+The code was developed using docker container with the following stack
 - Python 3.6
 - Flask micro web framework
 - Python unittest
