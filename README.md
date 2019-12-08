@@ -49,11 +49,16 @@ Test unit overlap with others for updating ... ok
 
 Test API can create a Voucher (POST request) - True
 code: 'SNSD', value: 10000, start: '2018-09-01 17:00:00', end: '2019-09-15 17:00:00'
-Test API can get a Voucher (GET request) ... ok
+Test API can create a Voucher (POST request) ... ok
 
 Test API can create a Voucher (POST request) - False
 code: 'SNSD', value: 10000, start: '2018-09-01 17:00:00', end: '2019-09-15 17:00:00'
-Test API can get a Voucher (GET request) ... ok
+Test API can create a Voucher (POST request) ... ok
+
+Test API can update a Voucher (PUT request) - True
+code:'SNSD', value:5000, start: "2018-09-01 17:00:00", end: "2019-09-15 17:00:00"
+code:'ABCD', value:10000, start: '2018-09-01 17:00:00', end:'2019-09-15 17:00:00'
+Test API can update a Voucher (PUT request) ... ok
 ```
 
 ## Code
